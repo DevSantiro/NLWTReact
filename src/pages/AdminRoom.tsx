@@ -45,7 +45,7 @@ export const AdminRoom = () => {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logoImg} alt="Letmeask" onClick={(event) => {history.push('/')}} />
           <div>
             <RoomCode code={roomId}/>
             <Button onClick={handleEndRoom} isOutlined>Encerrar Sala</Button>
