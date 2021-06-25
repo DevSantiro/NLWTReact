@@ -7,6 +7,7 @@ import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
 
+import { Navbar } from '../components/Navbar/index';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
@@ -43,7 +44,6 @@ export const AdminRoom = () => {
     }
   }
 
-
   async function handleCheckQuestionAsAnswered(questionId: string) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isAnswered: true,
@@ -57,15 +57,8 @@ export const AdminRoom = () => {
 
   return (
     <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="Letmeask" onClick={(event) => {history.push('/')}} />
-          <div>
-            <RoomCode code={roomId}/>
-            <Button onClick={handleEndRoom} isOutlined>Encerrar Sala</Button>
-          </div>
-        </div>
-      </header>
+
+      <Navbar isAdmin/>
 
       <main className="content">
         <div className="room-title">

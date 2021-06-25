@@ -4,9 +4,11 @@ import { useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 
 import { Button } from '../components/Button';
+import { Navbar } from '../components/Navbar';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
+import { usePage } from '../hooks/usePage';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
@@ -19,6 +21,7 @@ type RoomParams = {
 export const Room = () => {
   const history = useHistory();
   const { user } = useAuth();
+  const { page } = usePage();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
   const roomId = params.id;
@@ -61,14 +64,11 @@ export const Room = () => {
     }
   }
 
+  
   return (
-    <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="Letmeask" onClick={(event) => {history.push('/')}} />
-          <RoomCode code={roomId}/>
-        </div>
-      </header>
+    <div id="page-room" className={ page?.Dark ? 'dark-theme' : ''}>
+
+      <Navbar />
 
       <main className="content">
         <div className="room-title">

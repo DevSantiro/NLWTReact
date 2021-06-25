@@ -3,7 +3,9 @@ import { Home } from "./pages/Home";
 import { NewRoom } from "./pages/NewRoom";
 import './styles/global.scss';
 
-import { AuthContextProvider } from './contexts/AuthContext'
+import { AuthContextProvider } from './contexts/AuthContext';
+import { PageContextProvider } from './contexts/PageContext';
+
 import { Room } from './pages/Room';
 import { AdminRoom } from './pages/AdminRoom';
 
@@ -15,9 +17,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/rooms/new" component={NewRoom}/>
-          <Route path="/rooms/:id" component={Room}/>
-
-          <Route path="/admin/rooms/:id" component={AdminRoom}/>
+          <PageContextProvider>
+            <Route path="/rooms/:id" component={Room}/>
+            <Route path="/admin/rooms/:id" component={AdminRoom}/>
+          </PageContextProvider>
         </Switch>
       </AuthContextProvider>
     </BrowserRouter>
